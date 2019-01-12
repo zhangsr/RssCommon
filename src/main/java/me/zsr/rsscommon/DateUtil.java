@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateUtil {
     private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm");
@@ -15,6 +16,8 @@ public class DateUtil {
      */
     private static final SimpleDateFormat RFC822 = new SimpleDateFormat(
             "EEE, dd MMM yyyy HH:mm:ss Z", java.util.Locale.ENGLISH);
+    private static final SimpleDateFormat ISO8610 = new SimpleDateFormat(
+            "yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
 
     /**
      * Parses string as an RFC 822 date/time.
@@ -23,8 +26,16 @@ public class DateUtil {
         try {
             return RFC822.parse(date);
         } catch (ParseException e) {
-            return new Date();
+            e.printStackTrace();
         }
+
+        try {
+            return ISO8610.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return new Date();
     }
 
     public static boolean isSameDay(Date date1, Date date2) {
