@@ -59,6 +59,7 @@ public class LogUtil {
      * @param msg
      */
     public static void e(String msg) {
+        // TODO: 2019/3/14 analysis error
         e(DEFAULT_TAG, getInformation(msg));
     }
 
