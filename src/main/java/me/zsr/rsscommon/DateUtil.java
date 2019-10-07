@@ -23,6 +23,10 @@ public class DateUtil {
      * Parses string as an RFC 822 date/time.
      */
     public static Date parseRfc822(String date) {
+        if (StringUtil.isNullOrEmpty(date)) {
+            return new Date();
+        }
+
         try {
             return RFC822.parse(date);
         } catch (ParseException e) {
